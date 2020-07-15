@@ -13,7 +13,7 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int OrderId;
+	private long OrderId;
 	private boolean IsPaid;
 	private int ItemNumber;
 	@ManyToOne

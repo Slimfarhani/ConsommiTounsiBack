@@ -13,7 +13,7 @@ public class Aisle {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int AisleId;
+	private long AisleId;
 	private String Name;
 	private int Number;
 	private String Type;

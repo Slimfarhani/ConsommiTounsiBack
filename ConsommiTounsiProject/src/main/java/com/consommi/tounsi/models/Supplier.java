@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorValue("supplier")
+@DiscriminatorValue("Supplier")
 public class Supplier extends User{
 
 	private String Name;

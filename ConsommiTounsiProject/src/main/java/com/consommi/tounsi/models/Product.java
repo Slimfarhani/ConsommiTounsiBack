@@ -28,4 +28,46 @@ public class Product {
 	private Aisle Aisle;
 	@OneToMany(mappedBy = "Product")
 	private List<Stock> Stock;
+	public long getProductId() {
+		return ProductId;
+	}
+	public void setProductId(long productId) {
+		ProductId = productId;
+	}
+	public String getProductName() {
+		return ProductName;
+	}
+	public void setProductName(String productName) {
+		ProductName = productName;
+	}
+	public float getWeight() {
+		return Weight;
+	}
+	public void setWeight(float weight) {
+		Weight = weight;
+	}
+	public long getBarCode() {
+		return BarCode;
+	}
+	public void setBarCode(long barCode) {
+		BarCode = barCode;
+	}
+	public Category getCategory() {
+		return Category;
+	}
+	public void setCategory(Category category) {
+		Category = category;
+	}
+	public Aisle getAisle() {
+		return Aisle;
+	}
+	public void setAisle(Aisle aisle) {
+		Aisle = aisle;
+	}
+	public List<Stock> getStock() {
+		return Stock;
+	}
+	public void setStock(List<Stock> stock) {
+		Stock = stock;
+	}
 }

@@ -17,7 +17,7 @@ public class Ad {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int AdId;
+	private long AdId;
 	private String Title;
 	private Date StartDate;
 	private Date EndDate;

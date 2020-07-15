@@ -11,7 +11,7 @@ public class Complaint {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int ComplaintId;
+	private long ComplaintId;
 	private String Topic;
 	private int Description;
 	private int State;

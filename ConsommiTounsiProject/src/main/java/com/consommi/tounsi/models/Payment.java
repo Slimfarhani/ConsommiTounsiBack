@@ -10,6 +10,6 @@ public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int PaymentId;
+	private long PaymentId;
 	private String PaymentMethod;
 }

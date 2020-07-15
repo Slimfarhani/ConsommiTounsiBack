@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
-@DiscriminatorValue("customer")
+@DiscriminatorValue("Customer")
 public class Customer extends User{
 
 	private String FirstName;
@@ -17,6 +18,8 @@ public class Customer extends User{
 	private String Address;
 	@OneToMany(mappedBy = "Customer")
 	private List<Order> Orders;
+	@OneToMany(mappedBy = "Customer", fetch = FetchType.LAZY)
+	private List<Participation> Participations;
 	
 	
 }

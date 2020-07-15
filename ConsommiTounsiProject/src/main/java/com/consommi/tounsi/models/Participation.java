@@ -21,4 +21,34 @@ public class Participation {
 	private Event Event;
 	private boolean IsParticipating;
 	private float DonationAmount;
+	public ParticipationId getParticipationId() {
+		return ParticipationId;
+	}
+	public void setParticipationId(ParticipationId participationId) {
+		ParticipationId = participationId;
+	}
+	public Customer getCustomer() {
+		return Customer;
+	}
+	public void setCustomer(Customer customer) {
+		Customer = customer;
+	}
+	public Event getEvent() {
+		return Event;
+	}
+	public void setEvent(Event event) {
+		Event = event;
+	}
+	public boolean isIsParticipating() {
+		return IsParticipating;
+	}
+	public void setIsParticipating(boolean isParticipating) {
+		IsParticipating = isParticipating;
+	}
+	public float getDonationAmount() {
+		return DonationAmount;
+	}
+	public void setDonationAmount(float donationAmount) {
+		DonationAmount = donationAmount;
+	}
 }

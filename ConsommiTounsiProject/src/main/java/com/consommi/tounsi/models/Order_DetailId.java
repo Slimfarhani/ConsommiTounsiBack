@@ -9,8 +9,8 @@ import javax.persistence.Embeddable;
 public class Order_DetailId implements Serializable{
 
 	@Column(name = "product_id")
-	private int ProductId;
+	private long ProductId;
 	@Column(name = "order_id")
-	private int OrderId;
+	private long OrderId;
 	
 }

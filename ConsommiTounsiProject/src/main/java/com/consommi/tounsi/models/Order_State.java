@@ -11,7 +11,7 @@ public class Order_State {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Order_StateId;
+	private long Order_StateId;
 	private String Type;
 	private Date Date;
 }
