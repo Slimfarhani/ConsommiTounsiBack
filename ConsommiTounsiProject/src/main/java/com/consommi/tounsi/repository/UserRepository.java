@@ -18,3 +18,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Query(value = "select user_type from user where user_name = ?1 and password= ?2", nativeQuery = true)
     Optional<String> getUserRole(String user_name,String password);
 }
+

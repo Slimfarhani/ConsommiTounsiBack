@@ -7,21 +7,21 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.consommi.tounsi.models.Users;
-import com.consommi.tounsi.repository.UsersRepository;
+import com.consommi.tounsi.models.User;
+import com.consommi.tounsi.repository.UserRepository;
 
 @Service
 @Transactional
-public class UsersService {
+public class UserService {
 
 	@Autowired
-	UsersRepository agent;
+	UserRepository agent;
 	
-	public List<Users> getAllUsers(){
+	public List<User> getAllUsers(){
 		return agent.findAll();
 	}
 	
-	public Users addOrUpdateUser(Users user) {
+	public User addOrUpdateUser(User user) {
 		agent.save(user);
 		return user;
 	}
