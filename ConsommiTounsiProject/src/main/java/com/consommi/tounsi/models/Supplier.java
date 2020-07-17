@@ -13,6 +13,42 @@ public class Supplier extends User{
 	private String Name;
 	private String Mail;
 	private String Address;
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public String getMail() {
+		return Mail;
+	}
+	public void setMail(String mail) {
+		Mail = mail;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	public List<Event> getEvents() {
+		return Events;
+	}
+	public void setEvents(List<Event> events) {
+		Events = events;
+	}
+	public List<Stock> getStock() {
+		return Stock;
+	}
+	public void setStock(List<Stock> stock) {
+		Stock = stock;
+	}
+	public List<Ad> getAds() {
+		return Ads;
+	}
+	public void setAds(List<Ad> ads) {
+		Ads = ads;
+	}
 	@OneToMany(mappedBy = "Supplier")
 	private List<Event> Events;
 	@OneToMany(mappedBy = "Supplier")

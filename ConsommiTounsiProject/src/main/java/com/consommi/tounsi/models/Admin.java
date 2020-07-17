@@ -8,4 +8,21 @@ import javax.persistence.Entity;
 public class Admin extends User {
 
 	private String Name;
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public Admin(String name) {
+		super();
+		Name = name;
+	}
+
+	public Admin() {
+		super();
+	}
 }

@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Stock {
 
@@ -34,6 +36,7 @@ public class Stock {
 	public void setProduct(Product product) {
 		Product = product;
 	}
+	@JsonIgnore
 	public Supplier getSupplier() {
 		return Supplier;
 	}

@@ -1,9 +1,13 @@
 package com.consommi.tounsi.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consommi.tounsi.exceptions.ResourceNotFoundException;
+import com.consommi.tounsi.models.Admin;
 import com.consommi.tounsi.models.Customer;
 import com.consommi.tounsi.models.User;
 import com.consommi.tounsi.repository.AdminRepository;
@@ -35,7 +40,7 @@ public class UserController {
 	CustomerRepository agentCustomer;
 	AdminRepository agentAdmin;
 	SupplierRepository agentSupplier;
-	
+	List<String> roles = Arrays.asList("Admin", "Customer", "Supplier");
 	@GetMapping("/user")
 	public List<User> getAllUsers() {
 		return agent.findAll();
@@ -50,10 +55,25 @@ public class UserController {
 	@GetMapping("/user/{username}/{password}")
 	public ResponseEntity<User> getUserByUserNameAndPassword(@PathVariable(value = "username") String userName,
 			@PathVariable(value = "password") String password)
-			throws ResourceNotFoundException {
-		User user=agent.findByUserNameAndPassword(userName, password)
-				.orElseThrow(() -> new ResourceNotFoundException("User not found for this username :: " + userName));
+			throws Exception {
+		String role= getUserRole(userName, password);
+		User user = agent.findByUserNameAndPassword(userName, password)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + 3));
+		user.setRole(role);	
 		return ResponseEntity.ok().body(user);
+		
+	}
+	
+		
+			
+		
+	
+	public String getUserRole(String userName,String password)
+			throws Exception {
+		String role=agent.getUserRole(userName, password).orElse("Visitor");
+			
+		
+		return role;
 		
 	}
 

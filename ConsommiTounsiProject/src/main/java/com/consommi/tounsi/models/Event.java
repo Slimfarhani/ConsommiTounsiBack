@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.data.relational.core.mapping.Embedded.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Event {
 
@@ -56,12 +58,14 @@ public class Event {
 	public void setEndDate(String endDate) {
 		EndDate = endDate;
 	}
+	@JsonIgnore
 	public Supplier getSupplier() {
 		return Supplier;
 	}
 	public void setSupplier(Supplier supplier) {
 		Supplier = supplier;
 	}
+	@JsonIgnore
 	public List<Participation> getParticipations() {
 		return Participations;
 	}

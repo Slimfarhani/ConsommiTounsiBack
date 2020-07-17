@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.ManyToAny;
 import org.springframework.data.relational.core.mapping.Embedded.Nullable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Ad {
 

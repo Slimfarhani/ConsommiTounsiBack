@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -32,6 +33,14 @@ public class User {
 	private long UserId;
 	private String UserName;
 	private String Password;
+	@Transient
+	private String role;
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	@OneToMany(mappedBy = "User", fetch = FetchType.EAGER)
 	private List<Post_React> Post_Reacts;
 	@OneToMany(mappedBy = "User")
