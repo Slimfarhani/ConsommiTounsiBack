@@ -14,12 +14,20 @@ public class Supplier extends User{
 	private String Name;
 	private String Mail;
 	private String Address;
-	private Date Birthdate;
-	public Date getBirthdate() {
-		return Birthdate;
+	private String Phone;
+	private String UrlImage;
+	
+	public String getUrlImage() {
+		return UrlImage;
 	}
-	public void setBirthdate(Date birthdate) {
-		Birthdate = birthdate;
+	public void setUrlImage(String urlImage) {
+		UrlImage = urlImage;
+	}
+	public String getPhone() {
+		return Phone;
+	}
+	public void setPhone(String phone) {
+		Phone = phone;
 	}
 	public String getName() {
 		return Name;

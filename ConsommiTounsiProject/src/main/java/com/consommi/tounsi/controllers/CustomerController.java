@@ -22,7 +22,7 @@ import com.consommi.tounsi.exceptions.ResourceNotFoundException;
 import com.consommi.tounsi.models.Customer;
 import com.consommi.tounsi.repository.CustomerRepository;
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/v1/customer")
 public class CustomerController {
 	
 	@Autowired
@@ -32,7 +32,7 @@ public class CustomerController {
 	public List<Customer> getAllCustomers() {
 		ArrayList<Customer> list = (ArrayList<Customer>) agent.findAll();
 		for (Customer customer : list) {
-			customer.setRole("customer");
+			customer.setRole("Customer");
 			
 		}
 		return list ;
@@ -86,11 +86,12 @@ public class CustomerController {
 		if (customerDetails.getPost_Reacts()!=null) {
 			customer.setPost_Reacts(customerDetails.getPost_Reacts());
 		}
-		if (customerDetails.getBirthday()!=null) {
-			customer.setBirthday(customerDetails.getBirthday());
-		}
+		
 		if (customerDetails.getPhone()!=null) {
 			customer.setPhone(customerDetails.getPhone());
+		}
+		if (customerDetails.getGender()!=null) {
+			customer.setGender(customerDetails.getGender());
 		}
 		
 	}
