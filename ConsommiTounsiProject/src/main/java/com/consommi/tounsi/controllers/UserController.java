@@ -52,6 +52,8 @@ public class UserController {
 				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 		return ResponseEntity.ok().body(user);
 	}
+	
+	
 	@GetMapping("/user/{username}/{password}")
 	public ResponseEntity<User> getUserByUserNameAndPassword(@PathVariable(value = "username") String userName,
 			@PathVariable(value = "password") String password)
