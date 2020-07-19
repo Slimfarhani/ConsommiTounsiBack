@@ -18,6 +18,8 @@ public class Customer extends User{
 	private String Mail;
 	private String Address;
 	private Date Birthdate;
+	private String Phone ;
+	private String Gender;
 	public Date getBirthdate() {
 		return Birthdate;
 	}
@@ -70,6 +72,20 @@ public class Customer extends User{
 	private List<Order> Orders;
 	@OneToMany(mappedBy = "Customer", fetch = FetchType.LAZY)
 	private List<Participation> Participations;
-	
+	public String getPhone() {
+		return Phone;
+	}
+
+	public void setPhone(String phone) {
+		Phone = phone;
+	}
+
+	public String getGender() {
+		return Gender;
+	}
+
+	public void setGender(String gender) {
+		Gender = gender;
+	}
 	
 }
