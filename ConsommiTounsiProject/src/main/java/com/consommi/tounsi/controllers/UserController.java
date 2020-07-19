@@ -64,10 +64,6 @@ public class UserController {
 		
 	}
 	
-		
-			
-		
-	
 	public String getUserRole(String userName,String password)
 			throws Exception {
 		String role=agent.getUserRole(userName, password).orElse("Visitor");
@@ -78,9 +74,14 @@ public class UserController {
 	}
 
 	@PostMapping("/user")
-	public User createEmployee(@Valid @RequestBody User user) {
+	public User createUser(@Valid @RequestBody User user) {
 		return agent.save(user);
 	}
+	@PostMapping("/customer")
+	public Customer createCustomer(@Valid @RequestBody Customer customer) {
+		return agent.save(customer);
+	}
+	
 
 	@PutMapping("/user/{id}")
 	public ResponseEntity<User> updateEmployee(@PathVariable(value = "id") Long userId,

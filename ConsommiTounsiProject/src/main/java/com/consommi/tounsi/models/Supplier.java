@@ -1,5 +1,6 @@
 package com.consommi.tounsi.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -13,6 +14,13 @@ public class Supplier extends User{
 	private String Name;
 	private String Mail;
 	private String Address;
+	private Date Birthdate;
+	public Date getBirthdate() {
+		return Birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		Birthdate = birthdate;
+	}
 	public String getName() {
 		return Name;
 	}

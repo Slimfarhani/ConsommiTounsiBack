@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Participation {
 
@@ -27,6 +29,7 @@ public class Participation {
 	public void setParticipationId(ParticipationId participationId) {
 		ParticipationId = participationId;
 	}
+	@JsonIgnore
 	public Customer getCustomer() {
 		return Customer;
 	}
