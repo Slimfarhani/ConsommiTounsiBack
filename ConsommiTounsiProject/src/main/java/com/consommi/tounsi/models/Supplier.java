@@ -1,5 +1,6 @@
 package com.consommi.tounsi.models;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -13,6 +14,21 @@ public class Supplier extends User{
 	private String Name;
 	private String Mail;
 	private String Address;
+	private String Phone;
+	private String UrlImage;
+	
+	public String getUrlImage() {
+		return UrlImage;
+	}
+	public void setUrlImage(String urlImage) {
+		UrlImage = urlImage;
+	}
+	public String getPhone() {
+		return Phone;
+	}
+	public void setPhone(String phone) {
+		Phone = phone;
+	}
 	public String getName() {
 		return Name;
 	}
