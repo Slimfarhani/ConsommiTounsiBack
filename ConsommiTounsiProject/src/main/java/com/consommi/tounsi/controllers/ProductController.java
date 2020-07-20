@@ -45,6 +45,17 @@ public class ProductController {
 		return ResponseEntity.ok().body(product);
 	}
 
+	@GetMapping("/productByName/{nomProd}")
+	public ResponseEntity<Product> getProductByNomProd(@PathVariable(value = "nomProd") String nomProd)
+			throws ResourceNotFoundException {
+		Product product = agent.findByProdName(nomProd)
+				.orElseThrow(() -> new ResourceNotFoundException("Product not found for this nomProd :: " + nomProd));
+		return ResponseEntity.ok().body(product);
+	}
+	
+	
+	
+	
 	@PostMapping("/product")
 	public Product createProduct(@Valid @RequestBody Product product,@PathVariable(value = "userid")
 	Long userId) throws ResourceNotFoundException {
