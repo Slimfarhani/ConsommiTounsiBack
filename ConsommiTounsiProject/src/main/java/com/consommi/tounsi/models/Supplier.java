@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("Supplier")
 public class Supplier extends User{
@@ -47,18 +49,21 @@ public class Supplier extends User{
 	public void setAddress(String address) {
 		Address = address;
 	}
+	@JsonIgnore
 	public List<Event> getEvents() {
 		return Events;
 	}
 	public void setEvents(List<Event> events) {
 		Events = events;
 	}
+	@JsonIgnore
 	public List<Stock> getStock() {
 		return Stock;
 	}
 	public void setStock(List<Stock> stock) {
 		Stock = stock;
 	}
+	@JsonIgnore
 	public List<Ad> getAds() {
 		return Ads;
 	}

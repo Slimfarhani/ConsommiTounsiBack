@@ -81,4 +81,11 @@ public class StockController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	@GetMapping("/stockByProductName/{nomProd}")
+	public ResponseEntity<List<Stock>> getStockByNomProd(@PathVariable(value = "nomProd") String nomProd)
+			throws ResourceNotFoundException {
+		List<Stock> stock = agent.findByStockName(nomProd)
+				.orElse(null);
+		return ResponseEntity.ok().body(stock);
+	}
 }
