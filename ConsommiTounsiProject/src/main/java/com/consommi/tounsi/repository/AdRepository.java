@@ -7,5 +7,5 @@ import com.consommi.tounsi.models.Ad;
 
 @Repository
 public interface AdRepository extends JpaRepository<Ad, Long>{
-
+	
 }
