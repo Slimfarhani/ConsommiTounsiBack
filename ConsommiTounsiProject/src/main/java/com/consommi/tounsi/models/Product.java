@@ -21,9 +21,23 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long ProductId;
 	private String ProductName;
+	private String Description;
+	private String Mesure;
 	private float Weight;
 	private long BarCode;
 	private String ImageUrl;
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
+	public String getMesure() {
+		return Mesure;
+	}
+	public void setMesure(String mesure) {
+		Mesure = mesure;
+	}
 	public String getImageUrl() {
 		return ImageUrl;
 	}
