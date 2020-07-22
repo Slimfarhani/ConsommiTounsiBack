@@ -21,8 +21,10 @@ public class Participation {
 	@MapsId("event_id")
 	@JoinColumn(name = "event_id")
 	private Event Event;
-	private boolean IsParticipating;
+	//private boolean IsParticipating;
 	private float DonationAmount;
+	
+	
 	public ParticipationId getParticipationId() {
 		return ParticipationId;
 	}
@@ -42,12 +44,7 @@ public class Participation {
 	public void setEvent(Event event) {
 		Event = event;
 	}
-	public boolean isIsParticipating() {
-		return IsParticipating;
-	}
-	public void setIsParticipating(boolean isParticipating) {
-		IsParticipating = isParticipating;
-	}
+
 	public float getDonationAmount() {
 		return DonationAmount;
 	}
