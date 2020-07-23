@@ -88,4 +88,11 @@ public class StockController {
 				.orElse(null);
 		return ResponseEntity.ok().body(stock);
 	}
+	@GetMapping("/stockByProductAndSupplier/{productid}/{supplierid}")
+	public ResponseEntity<Stock> getStockByProductAndSupplier(@PathVariable(value = "productid") String productid,@PathVariable(value = "supplierid") String supplierid)
+			throws ResourceNotFoundException {
+		Stock stock = agent.findByProductIdAndSuppliedId(productid, supplierid)
+				.orElse(null);
+		return ResponseEntity.ok().body(stock);
+	}
 }

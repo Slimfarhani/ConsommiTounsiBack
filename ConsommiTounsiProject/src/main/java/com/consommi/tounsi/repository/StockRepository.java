@@ -18,4 +18,6 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
 
 	@Query(value="select * from stock as s, product as p where s.product_id=p.product_id and  p.product_name like %?1% ",nativeQuery = true)
 	Optional<List<Stock>>findByStockName(@Param("productName")String productName);
+	@Query(value="select * from stock as s, product as p,user as u where s.product_id=p.product_id and  s.supplier_id=u.user_id and s.product_id=?1 and s.supplier_id=?2 ",nativeQuery = true)
+	Optional<Stock>findByProductIdAndSuppliedId(@Param("product_id")String productid,@Param("supplier_id")String supplierid);
 }
