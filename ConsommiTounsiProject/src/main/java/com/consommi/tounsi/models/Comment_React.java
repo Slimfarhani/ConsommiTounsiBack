@@ -25,5 +25,30 @@ public class Comment_React {
 	@MapsId("comment_id")
 	@JoinColumn(name = "comment_id")
 	private Comment Comment;
+	public Comment_ReactId getComment_ReactId() {
+		return Comment_ReactId;
+	}
+	public void setComment_ReactId(Comment_ReactId comment_ReactId) {
+		Comment_ReactId = comment_ReactId;
+	}
+	public Reaction getReactionType() {
+		return ReactionType;
+	}
+	public void setReactionType(Reaction reactionType) {
+		ReactionType = reactionType;
+	}
+	public User getUser() {
+		return User;
+	}
+	public void setUser(User user) {
+		User = user;
+	}
+	public Comment getComment() {
+		return Comment;
+	}
+	public void setComment(Comment comment) {
+		Comment = comment;
+	}
+	
 
 }

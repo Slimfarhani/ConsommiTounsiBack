@@ -31,6 +31,7 @@ public class PostController {
 	PostRepository agent;
 	@Autowired
 	UserRepository agent2;
+	
 	@GetMapping("/post")
 	public List<Post> getAllPosts() {
 		return agent.findAll();
