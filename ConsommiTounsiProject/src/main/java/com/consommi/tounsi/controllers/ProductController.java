@@ -46,9 +46,9 @@ public class ProductController {
 	}
 
 	@GetMapping("/productByName/{nomProd}")
-	public ResponseEntity<Product> getProductByNomProd(@PathVariable(value = "nomProd") String nomProd)
+	public ResponseEntity <List<Product>> getProductByNomProd(@PathVariable(value = "nomProd") String nomProd)
 			throws ResourceNotFoundException {
-		Product product = agent.findByProdName(nomProd)
+		List<Product> product = agent.findByProdName(nomProd)
 				.orElseThrow(() -> new ResourceNotFoundException("Product not found for this nomProd :: " + nomProd));
 		return ResponseEntity.ok().body(product);
 	}
