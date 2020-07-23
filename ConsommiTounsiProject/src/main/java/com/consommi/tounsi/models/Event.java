@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.data.relational.core.mapping.Embedded.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,11 +24,46 @@ public class Event {
 	private String Title;
 	private String Location;
 	private Date StartDate;
-	private String EndDate;
+	private Date EndDate;
+	private String Description;
+	private String UrlImage;
+	private int state=0; // 0:en cours de traitement par l'ADMIN; 1: validé ; 2: refusé
+
 	@ManyToOne
 	private Supplier Supplier;
 	@OneToMany(mappedBy = "Event")
 	private List<Participation> Participations;
+	
+	
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public Event(String title, String location, Date startDate, Date endDate, String description, String urlImage,
+			int state, com.consommi.tounsi.models.Supplier supplier, List<Participation> participations) {
+		super();
+		Title = title;
+		Location = location;
+		StartDate = startDate;
+		EndDate = endDate;
+		Description = description;
+		UrlImage = urlImage;
+		this.state = state;
+		Supplier = supplier;
+		Participations = participations;
+	}
+
+
+
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
 	public long getEventId() {
 		return EventId;
 	}
@@ -52,10 +88,11 @@ public class Event {
 	public void setStartDate(Date startDate) {
 		StartDate = startDate;
 	}
-	public String getEndDate() {
+
+	public Date getEndDate() {
 		return EndDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		EndDate = endDate;
 	}
 	@JsonIgnore
@@ -72,5 +109,21 @@ public class Event {
 	public void setParticipations(List<Participation> participations) {
 		Participations = participations;
 	}
+	public String getUrlImage() {
+		return UrlImage;
+	}
+	public void setUrlImage(String urlImage) {
+		UrlImage = urlImage;
+	}
+	
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
 	
 }
