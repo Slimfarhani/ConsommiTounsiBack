@@ -18,6 +18,39 @@ public class Delivery_Man {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Delivery_ManId;
+	public Delivery_Man() {
+		super();
+	}
+	public long getDelivery_ManId() {
+		return Delivery_ManId;
+	}
+	public void setDelivery_ManId(long delivery_ManId) {
+		Delivery_ManId = delivery_ManId;
+	}
+	public String getName() {
+		return Name;
+	}
+	public void setName(String name) {
+		Name = name;
+	}
+	public String getState() {
+		return State;
+	}
+	public void setState(String state) {
+		State = state;
+	}
+	public DeliveryZone getDeliveryZone() {
+		return DeliveryZone;
+	}
+	public void setDeliveryZone(DeliveryZone deliveryZone) {
+		DeliveryZone = deliveryZone;
+	}
+	public List<Delivery> getDeliveries() {
+		return Deliveries;
+	}
+	public void setDeliveries(List<Delivery> deliveries) {
+		Deliveries = deliveries;
+	}
 	private String Name;
 	private String State;
 	@Enumerated(EnumType.STRING)

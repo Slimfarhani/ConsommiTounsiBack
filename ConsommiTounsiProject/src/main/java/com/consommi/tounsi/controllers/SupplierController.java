@@ -61,6 +61,9 @@ public class SupplierController {
 		if (supplierDetails.getUserName()!=null) {
 			supplier.setUserName(supplierDetails.getUserName());
 		}
+		if (supplierDetails.getPhone()!=null) {
+			supplier.setPhone(supplierDetails.getPhone());
+		}
 		if (supplierDetails.getPassword()!=null) {
 			supplier.setPassword(supplierDetails.getPassword());
 		}
@@ -96,6 +99,7 @@ public class SupplierController {
 				.orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + supplierId));        
 	    copyProperties(supplierDetails, supplier);
 		final Supplier updatedsupplier = agent.save(supplier);
+		updatedsupplier.setRole("Supplier");
 		return ResponseEntity.ok(updatedsupplier);
 	}
 	@DeleteMapping("/delete/{id}")
