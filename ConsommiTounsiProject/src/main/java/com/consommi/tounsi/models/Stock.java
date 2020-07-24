@@ -2,6 +2,9 @@ package com.consommi.tounsi.models;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -11,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Stock {
 
+	
 	@EmbeddedId
 	private StockId StockId;
 	@ManyToOne
@@ -22,7 +26,6 @@ public class Stock {
 	@JoinColumn(name = "supplier_id")
 	private Supplier Supplier;
 	private float Quantity;
-	private String Mesure;
 	private float Price;
 	public StockId getStockId() {
 		return StockId;
@@ -36,7 +39,6 @@ public class Stock {
 	public void setProduct(Product product) {
 		Product = product;
 	}
-	@JsonIgnore
 	public Supplier getSupplier() {
 		return Supplier;
 	}
@@ -48,12 +50,6 @@ public class Stock {
 	}
 	public void setQuantity(float quantity) {
 		Quantity = quantity;
-	}
-	public String getMesure() {
-		return Mesure;
-	}
-	public void setMesure(String mesure) {
-		Mesure = mesure;
 	}
 	public float getPrice() {
 		return Price;

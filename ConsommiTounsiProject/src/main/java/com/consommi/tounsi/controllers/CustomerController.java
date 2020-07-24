@@ -105,6 +105,7 @@ public class CustomerController {
 				.orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + customerId));        
 	    copyProperties(customerDetails, customer);
 		final Customer updatedcustomer = agent.save(customer);
+		updatedcustomer.setRole("Customer");
 		return ResponseEntity.ok(updatedcustomer);
 	}
 	@DeleteMapping("/delete/{id}")

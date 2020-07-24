@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("Customer")
 public class Customer extends User{
@@ -20,12 +22,10 @@ public class Customer extends User{
 	private Date Birthdate;
 	private String Phone ;
 	private String Gender;
-	public Date getBirthdate() {
-		return Birthdate;
-	}
-	public void setBirthdate(Date birthdate) {
-		Birthdate = birthdate;
-	}
+	@OneToMany(mappedBy = "Customer")
+	private List<Order> Orders;
+	@OneToMany(mappedBy = "Customer", fetch = FetchType.LAZY)
+	private List<Participation> Participations;
 	public String getFirstName() {
 		return FirstName;
 	}
@@ -56,6 +56,25 @@ public class Customer extends User{
 	public void setAddress(String address) {
 		Address = address;
 	}
+	public Date getBirthdate() {
+		return Birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		Birthdate = birthdate;
+	}
+	public String getPhone() {
+		return Phone;
+	}
+	public void setPhone(String phone) {
+		Phone = phone;
+	}
+	public String getGender() {
+		return Gender;
+	}
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+	@JsonIgnore
 	public List<Order> getOrders() {
 		return Orders;
 	}
@@ -68,24 +87,6 @@ public class Customer extends User{
 	public void setParticipations(List<Participation> participations) {
 		Participations = participations;
 	}
-	@OneToMany(mappedBy = "Customer")
-	private List<Order> Orders;
-	@OneToMany(mappedBy = "Customer", fetch = FetchType.LAZY)
-	private List<Participation> Participations;
-	public String getPhone() {
-		return Phone;
-	}
-
-	public void setPhone(String phone) {
-		Phone = phone;
-	}
-
-	public String getGender() {
-		return Gender;
-	}
-
-	public void setGender(String gender) {
-		Gender = gender;
-	}
+	
 	
 }

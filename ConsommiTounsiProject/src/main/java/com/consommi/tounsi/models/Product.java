@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.consommi.tounsi.enumerations.Category;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Product {
@@ -20,8 +21,29 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long ProductId;
 	private String ProductName;
+	private String Description;
+	private String Mesure;
 	private float Weight;
 	private long BarCode;
+	private String ImageUrl;
+	public String getDescription() {
+		return Description;
+	}
+	public void setDescription(String description) {
+		Description = description;
+	}
+	public String getMesure() {
+		return Mesure;
+	}
+	public void setMesure(String mesure) {
+		Mesure = mesure;
+	}
+	public String getImageUrl() {
+		return ImageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		ImageUrl = imageUrl;
+	}
 	@Enumerated(EnumType.STRING)
 	private Category Category;
 	@ManyToOne
@@ -64,6 +86,7 @@ public class Product {
 	public void setAisle(Aisle aisle) {
 		Aisle = aisle;
 	}
+	@JsonIgnore
 	public List<Stock> getStock() {
 		return Stock;
 	}
