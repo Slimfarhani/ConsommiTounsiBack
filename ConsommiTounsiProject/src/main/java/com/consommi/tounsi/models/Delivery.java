@@ -18,6 +18,13 @@ public class Delivery {
 	private float Weight;
 	private String Address;
 	private Date DeliveryDate;
+	private String DeliveryAddress;
+	public String getDeliveryAddress() {
+		return DeliveryAddress;
+	}
+	public void setDeliveryAddress(String deliveryAddress) {
+		DeliveryAddress = deliveryAddress;
+	}
 	private String State;
 	public Delivery() {
 		super();
