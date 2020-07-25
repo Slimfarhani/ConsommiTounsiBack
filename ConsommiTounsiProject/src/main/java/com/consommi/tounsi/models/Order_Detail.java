@@ -26,7 +26,7 @@ public class Order_Detail {
 	@ManyToOne
 	private Supplier Supplier;
 	private int Quantity;
-	private float Total;
+	private float Price;
 	public long getOrder_DetailId() {
 		return Order_DetailId;
 	}
@@ -58,10 +58,10 @@ public class Order_Detail {
 	public void setQuantity(int quantity) {
 		Quantity = quantity;
 	}
-	public float getTotal() {
-		return Total;
+	public float getPrice() {
+		return Price;
 	}
-	public void setTotal(float total) {
-		Total = total;
+	public void setPrice(float price) {
+		Price = price;
 	}
 }

@@ -2,8 +2,12 @@ package com.consommi.tounsi.controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,12 +30,15 @@ import com.consommi.tounsi.exceptions.ResourceNotFoundException;
 import com.consommi.tounsi.models.Admin;
 import com.consommi.tounsi.models.Customer;
 import com.consommi.tounsi.models.Order;
+import com.consommi.tounsi.models.Order_Detail;
+import com.consommi.tounsi.models.Order_State;
 import com.consommi.tounsi.models.User;
 import com.consommi.tounsi.repository.AdminRepository;
 import com.consommi.tounsi.repository.CustomerRepository;
 import com.consommi.tounsi.repository.OrderRepository;
 import com.consommi.tounsi.repository.SupplierRepository;
 import com.consommi.tounsi.repository.UserRepository;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -47,6 +54,10 @@ public class OrderController {
 	public List<Order> getAllOrders() {
 		return agent.findAll();
 	}
+	@GetMapping("/orderbycustomer/{idcustomer}")
+	public Optional<List<Order>> getOrdersByCustomer(@PathVariable(value = "idcustomer") Long customerId) {
+		return agent.findOrdersByCustomer(customerId);
+	}
 	@GetMapping("/order/{id}")
 	public ResponseEntity<Order> getOrderById(@PathVariable(value = "id") Long OrderId)
 			throws ResourceNotFoundException {
@@ -60,6 +71,24 @@ public class OrderController {
 
 	@PostMapping("/order")
 	public Order createOrder(@Valid @RequestBody Order Order) {
+		List<Order_Detail> details=Order.getDetails();
+		float total=0;
+		int itemNumber=0;
+		for (Order_Detail order_Detail : details) {
+			total+=order_Detail.getPrice()*order_Detail.getQuantity();
+			itemNumber+=order_Detail.getQuantity();
+			order_Detail.setOrder(Order);
+		}
+		Order.setDetails(details);
+		Order.setTotal(total);
+		Order.setItemNumber(itemNumber);
+		Order_State state=new Order_State();
+		state.setOrder(Order);
+		state.setDate(new Date(System.currentTimeMillis()));
+		state.setType("Confirmed");
+		List<Order_State> states=new ArrayList<Order_State>();
+		states.add(state);
+		Order.setStates(states);
 		final Order OrderCreated=agent.save(Order);
 		return OrderCreated;
 	}

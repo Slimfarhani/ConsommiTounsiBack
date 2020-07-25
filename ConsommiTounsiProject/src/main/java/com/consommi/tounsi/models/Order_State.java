@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 @Entity
@@ -39,6 +41,7 @@ public class Order_State {
 	public void setDate(Date date) {
 		Date = date;
 	}
+	@JsonIgnore
 	public Order getOrder() {
 		return Order;
 	}

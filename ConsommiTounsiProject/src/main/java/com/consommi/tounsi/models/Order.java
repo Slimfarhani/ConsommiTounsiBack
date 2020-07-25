@@ -78,7 +78,7 @@ public class Order {
 	}
 	@ManyToOne
 	private Customer Customer;
-	@OneToMany(mappedBy = "Order")
+	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
 	private List<Order_State> States;
 	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
 	private List<Order_Detail> Details;
