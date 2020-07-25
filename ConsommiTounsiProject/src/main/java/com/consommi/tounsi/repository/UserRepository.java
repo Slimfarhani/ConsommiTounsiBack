@@ -17,5 +17,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			@Param("Password")String Password);
 	@Query(value = "select user_type from user where user_name = ?1 and password= ?2", nativeQuery = true)
     Optional<String> getUserRole(String user_name,String password);
+	
+	@Query("select count(u)>0 from User u where u.UserName = :UserName")
+    Boolean verifUsername(@Param("UserName")String UserName);
 }
 
