@@ -3,11 +3,18 @@ package com.consommi.tounsi.models;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import com.consommi.tounsi.enumerations.DeliveryZone;
+import com.consommi.tounsi.enumerations.StatutCmd;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Delivery {
@@ -16,7 +23,6 @@ public class Delivery {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long DeliveryId;
 	private float Weight;
-	private String Address;
 	@Enumerated(EnumType.STRING)
 	private DeliveryZone Address;
 	private Date DeliveryDate;
@@ -29,7 +35,6 @@ public class Delivery {
 	public void setDeliveryAddress(String deliveryAddress) {
 		DeliveryAddress = deliveryAddress;
 	}
-	private String State;
 	public Delivery() {
 		super();
 	}
@@ -48,12 +53,7 @@ public class Delivery {
 	public void setDeliveryId(long deliveryId) {
 		DeliveryId = deliveryId;
 	}
-	public String getDeliveryMethod() {
-		return DeliveryMethod;
-	}
-	public void setDeliveryMethod(String deliveryMethod) {
-		DeliveryMethod = deliveryMethod;
-	}
+	
 	public float getWeight() {
 		return Weight;
 	}
