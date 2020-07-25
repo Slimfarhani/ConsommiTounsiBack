@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -36,6 +37,7 @@ public class Order {
 	}
 	private String DeliveryMethod;
 	@OneToOne
+	@JoinColumn(name = "delivery_id")
 	private Delivery Delivery;
 	public Order() {
 		super();

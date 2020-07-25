@@ -21,6 +21,29 @@ public class Delivery_Man {
 	public Delivery_Man() {
 		super();
 	}
+	
+	
+	
+	
+	
+	private String Name;
+	private String State;
+	@Enumerated(EnumType.STRING)
+	private DeliveryZone DeliveryZone;
+	@OneToMany(mappedBy = "Delivery_Man")
+	private List<Delivery> Deliveries;
+	
+	
+	
+	
+	
+	@Override
+	public String toString() {
+		return "Delivery_Man [Delivery_ManId=" + Delivery_ManId + ", Name=" + Name + ", State=" + State
+				+ ", DeliveryZone=" + DeliveryZone + ", Deliveries=" + Deliveries + "]";
+	}
+	
+	
 	public long getDelivery_ManId() {
 		return Delivery_ManId;
 	}
@@ -51,10 +74,9 @@ public class Delivery_Man {
 	public void setDeliveries(List<Delivery> deliveries) {
 		Deliveries = deliveries;
 	}
-	private String Name;
-	private String State;
-	@Enumerated(EnumType.STRING)
-	private DeliveryZone DeliveryZone;
-	@OneToMany(mappedBy = "Delivery_Man")
-	private List<Delivery> Deliveries;
+	
+	
+	
+	
+	
 }
