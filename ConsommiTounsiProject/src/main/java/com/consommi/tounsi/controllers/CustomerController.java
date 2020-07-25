@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.consommi.tounsi.exceptions.ResourceNotFoundException;
 import com.consommi.tounsi.models.Customer;
 import com.consommi.tounsi.repository.CustomerRepository;
-@RestController
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 	
