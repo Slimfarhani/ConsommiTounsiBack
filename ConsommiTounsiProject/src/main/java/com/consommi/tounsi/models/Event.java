@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -30,6 +32,7 @@ public class Event {
 	private int state=0; // 0:en cours de traitement par l'ADMIN; 1: validé ; 2: refusé
 
 	@ManyToOne
+	@JoinColumn(name = "supplier_user_id")
 	private Supplier Supplier;
 	@OneToMany(mappedBy = "Event")
 	private List<Participation> Participations;
@@ -42,6 +45,7 @@ public class Event {
 
 
 
+	
 	public Event(String title, String location, Date startDate, Date endDate, String description, String urlImage,
 			int state, com.consommi.tounsi.models.Supplier supplier, List<Participation> participations) {
 		super();
@@ -95,7 +99,7 @@ public class Event {
 	public void setEndDate(Date endDate) {
 		EndDate = endDate;
 	}
-	@JsonIgnore
+	
 	public Supplier getSupplier() {
 		return Supplier;
 	}

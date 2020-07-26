@@ -72,6 +72,12 @@ public class EventController {
 		return agent.findBySupplier(SupplierID);
 				
 	}
+	@GetMapping("/Donations/{EventID}")
+	public float getTotalDonations(@PathVariable(value = "EventID") Long EventID)
+	{	
+		return agent.TotalDonations(EventID);
+				
+	}
 
 	/*@PostMapping("/event/{supplierid}")
 	public Event createEvent(@Valid @RequestBody Event event,@PathVariable(value = "supplierid")

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("Customer")
 public class Customer extends User{
@@ -72,6 +74,7 @@ public class Customer extends User{
 	public void setGender(String gender) {
 		Gender = gender;
 	}
+	@JsonIgnore
 	public List<Order> getOrders() {
 		return Orders;
 	}

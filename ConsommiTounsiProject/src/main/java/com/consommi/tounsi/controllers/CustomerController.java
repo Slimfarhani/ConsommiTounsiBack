@@ -58,6 +58,9 @@ public class CustomerController {
 		if (customerDetails.getUserName()!=null) {
 			customer.setUserName(customerDetails.getUserName());
 		}
+		if (customerDetails.getBirthdate()!=null) {
+			customer.setBirthdate(customerDetails.getBirthdate());
+		}
 		if (customerDetails.getPassword()!=null) {
 			customer.setPassword(customerDetails.getPassword());
 		}
@@ -101,6 +104,7 @@ public class CustomerController {
 				.orElseThrow(() -> new ResourceNotFoundException("Customer not found for this id :: " + customerId));        
 	    copyProperties(customerDetails, customer);
 		final Customer updatedcustomer = agent.save(customer);
+		updatedcustomer.setRole("Customer");
 		return ResponseEntity.ok(updatedcustomer);
 	}
 	@DeleteMapping("/delete/{id}")

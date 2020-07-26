@@ -107,4 +107,43 @@ public class UserController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	@GetMapping("/verifyuser/{username}")
+	public ResponseEntity<Boolean>  VerifUsername(@PathVariable(value = "username") String userName)
+	{
+System.out.println(agent.verifUsername(userName));
+			try {
+				if (!agent.verifUsername(userName))
+					return ResponseEntity.ok(Boolean.TRUE) ;
+				else
+					return  ResponseEntity.ok(Boolean.FALSE);
+			} catch (Exception e) {
+				return  ResponseEntity.ok(Boolean.FALSE);			}	
+		
+	}
+	
+	public void copyProperties(User userDetails, User user) {
+		if(userDetails.getRole()!=null) {
+			user.setRole(userDetails.getRole());
+		}
+		if (userDetails.getUserName()!=null) {
+			user.setUserName(userDetails.getUserName());
+		}
+		
+		if (userDetails.getPassword()!=null) {
+			user.setPassword(userDetails.getPassword());
+		}
+		
+		
+	}
+	@PutMapping("admin/update/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId,
+			@Valid @RequestBody User userDetails) throws ResourceNotFoundException {
+		User user = agent.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("Admin not found for this id :: " + userId));        
+	    copyProperties(userDetails, user);
+		User updateduser = agent.save(user);
+		updateduser.setRole("Admin");
+		return ResponseEntity.ok(updateduser);
+	}
+	
 }
