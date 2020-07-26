@@ -22,6 +22,7 @@ public class Ad {
 	private float Cost;
 	private String Type;
 	private boolean IsValid;
+	private String ImageUrl;
 	@ManyToOne(optional = true)
 	private Supplier Supplier;
 	
@@ -101,6 +102,12 @@ public class Ad {
 		IsValid = isValid;
 	}
 
+	public String getImageUrl() {
+		return ImageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		ImageUrl = imageUrl;
+	}
 	public Supplier getSupplier() {
 		return Supplier;
 	}
