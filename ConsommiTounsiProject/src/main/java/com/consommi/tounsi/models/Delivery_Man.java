@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.consommi.tounsi.enumerations.DeliveryManStat;
 import com.consommi.tounsi.enumerations.DeliveryZone;
 
 @Entity
@@ -18,16 +19,11 @@ public class Delivery_Man {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Delivery_ManId;
-	public Delivery_Man() {
-		super();
-	}
-	
-	
-	
-	
 	
 	private String Name;
-	private String State;
+	private String NumTel;
+	@Enumerated(EnumType.STRING)
+	private DeliveryManStat State;
 	@Enumerated(EnumType.STRING)
 	private DeliveryZone DeliveryZone;
 	@OneToMany(mappedBy = "Delivery_Man")
@@ -56,10 +52,10 @@ public class Delivery_Man {
 	public void setName(String name) {
 		Name = name;
 	}
-	public String getState() {
+	public DeliveryManStat getState() {
 		return State;
 	}
-	public void setState(String state) {
+	public void setState(DeliveryManStat state) {
 		State = state;
 	}
 	public DeliveryZone getDeliveryZone() {
@@ -73,6 +69,16 @@ public class Delivery_Man {
 	}
 	public void setDeliveries(List<Delivery> deliveries) {
 		Deliveries = deliveries;
+	}
+
+
+	public String getNumTel() {
+		return NumTel;
+	}
+
+
+	public void setNumTel(String numTel) {
+		NumTel = numTel;
 	}
 	
 	

@@ -1,6 +1,5 @@
 package com.consommi.tounsi.models;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;

@@ -21,7 +21,6 @@ public class Order_Detail {
 	@ManyToOne
 	private Product Product;
 	@ManyToOne
-	
 	private Order Order;
 	@ManyToOne
 	private Supplier Supplier;
