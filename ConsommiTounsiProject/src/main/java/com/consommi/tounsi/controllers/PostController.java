@@ -38,7 +38,7 @@ public class PostController {
 	public List<Post> getAllPosts() {
 		return agent.findAll();
 	}
-	@GetMapping("/post/{id}")
+	@GetMapping("/postById/{id}")
 	public ResponseEntity<Post> getPostById(@PathVariable(value = "id") Long postId)
 			throws ResourceNotFoundException {
 		Post post = agent.findById(postId)
@@ -77,10 +77,10 @@ public class PostController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
-	@GetMapping("/postByCustomerName/{nomCustomer}")
-	public ResponseEntity<List<Post>> getStockByNomProd(@PathVariable(value = "nomCustomer") String nomCustomer)
+	@GetMapping("/postByUserName/{nomUser}")
+	public ResponseEntity<List<Post>> getStockByNomProd(@PathVariable(value = "nomUser") String nomUser)
 			throws ResourceNotFoundException {
-		List<Post> post = agent.findByCustomerName(nomCustomer)
+		List<Post> post = agent.findByuserName(nomUser)
 				.orElse(null);
 		return ResponseEntity.ok().body(post);
 	}
