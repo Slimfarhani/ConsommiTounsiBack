@@ -2,6 +2,7 @@ package com.consommi.tounsi.models;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -38,6 +39,7 @@ public class Participation {
 	public void setCustomer(Customer customer) {
 		Customer = customer;
 	}
+	@JsonIgnore
 	public Event getEvent() {
 		return Event;
 	}
