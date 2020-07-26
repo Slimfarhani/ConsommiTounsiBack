@@ -52,10 +52,20 @@ public class EventController {
 		return ResponseEntity.ok().body(event);
 	}
 	
+	
+	
+	
 	@GetMapping("/ByLocation/{location}")
 	public List<Event> getEventByLocation(@PathVariable(value = "location") String location)
 	{	
 		return agent.findByLocation(location);
+				
+	}
+	
+	@GetMapping("/UpcomingEvents")
+	public List<Event> getUpcomingEvents()
+	{	
+		return agent.UpcomingEvents();
 				
 	}
 	
@@ -70,6 +80,12 @@ public class EventController {
 	public List<Event> getEventBySupplier(@PathVariable(value = "SupplierID") Long SupplierID)
 	{	
 		return agent.findBySupplier(SupplierID);
+				
+	}
+	@GetMapping("/Donations/{EventID}")
+	public float getTotalDonations(@PathVariable(value = "EventID") Long EventID)
+	{	
+		return agent.TotalDonations(EventID);
 				
 	}
 
@@ -107,7 +123,7 @@ public class EventController {
 	
 
 	@DeleteMapping("/delete/{id}")
-	public Map<String, Boolean> deletePost(@PathVariable(value = "id") Long eventId)
+	public Map<String, Boolean> deleteEvent(@PathVariable(value = "id") Long eventId)
 			throws ResourceNotFoundException {
 		Event event = agent.findById(eventId)
 				.orElseThrow(() -> new ResourceNotFoundException("Event not found for this id :: " + eventId));
@@ -125,7 +141,10 @@ public class EventController {
 	}
 	
 	// *********************** ADMIN *****************************************************
-	
+	@GetMapping("/participation")
+	public List<Participation> listParticipations(){
+		return agentParticipation.findAll();
+	}
 	@PutMapping("/accept/{id}")
 	public ResponseEntity<Event> AcceptEvent(@PathVariable(value = "id") Long eventId,
 			@Valid @RequestBody Event eventDetails) throws ResourceNotFoundException {
