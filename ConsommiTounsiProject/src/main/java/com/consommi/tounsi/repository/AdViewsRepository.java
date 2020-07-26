@@ -13,4 +13,7 @@ import com.consommi.tounsi.models.AdViews;
 public interface AdViewsRepository extends JpaRepository<AdViews, Long>{
 	@Query("select av.UserId from AdViews av where av.AdId = :AdId")
 	List<Long> findByAdId(@Param("AdId")Long AdId);
+	
+	@Query("select av from AdViews av where av.AdId = :AdId and av.UserId = :UserId")
+	AdViews findByUserIdNdAdId(@Param("AdId")Long AdId,@Param("UserId")Long UserId);
 }

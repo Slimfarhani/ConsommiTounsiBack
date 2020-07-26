@@ -38,14 +38,24 @@ public class AdController {
 	@GetMapping("/ad/{id}")
 	public ResponseEntity<Ad> getAdById(@PathVariable(value = "id") Long adId)
 			throws ResourceNotFoundException {
+		System.out.println("getAdById");
 		Ad ad = agent.findById(adId)
 				.orElseThrow(() -> new ResourceNotFoundException("Ad not found for this id :: " + adId));
 		return ResponseEntity.ok().body(ad);
+	}
+	
+	@GetMapping("/supplierAds/{userId}")
+	public List<Ad> getAdBySupplierId(@PathVariable(value = "userId") Long userId)
+			throws ResourceNotFoundException {
+		System.out.println("getAdBySupplierId");
+		List<Ad> ads = agent.findBySupplierId(userId);
+		return ads;
 	}
 
 	@PostMapping("/ad/{supplierid}")
 	public Ad createAd(@Valid @RequestBody Ad ad,@PathVariable(value = "supplierid")
 	Long supplierId) throws ResourceNotFoundException {
+		System.out.println("createAd");
 		Supplier supplier = agentSupplier.findById(supplierId)
 				.orElseThrow(() -> new ResourceNotFoundException("Supplier not found:: " + supplierId));
 		ad.setSupplier(supplier);
@@ -55,6 +65,7 @@ public class AdController {
 	@PutMapping("/ad/{id}")
 	public ResponseEntity<Ad> updateAd(@PathVariable(value = "id") Long adId,
 			@Valid @RequestBody Ad adDetails) throws ResourceNotFoundException {
+		System.out.println("updateAd");
 		Ad ad = agent.findById(adId)
 				.orElseThrow(() -> new ResourceNotFoundException("Ad not found for this id :: " + adId));
 
@@ -65,10 +76,10 @@ public class AdController {
 	
 	public void prepObj(Ad adDetails,Ad ad) {
 
-		if (!adDetails.getTitle().equals("")) {
+		if (!adDetails.getTitle().equals("")&& adDetails.getTitle()!=null) {
 			ad.setTitle(adDetails.getTitle());
 		}
-		if (!adDetails.getType().equals("")) {
+		if (!adDetails.getType().equals("")&& adDetails.getType()!=null) {
 			ad.setType(adDetails.getType());
 		}
 		if (adDetails.getStartDate()!=null) {
@@ -87,16 +98,33 @@ public class AdController {
 			ad.setCost(adDetails.getCost());
 		}
 		ad.setIsValid(adDetails.getIsValid());
+		if (!adDetails.getImageUrl().equals("") && adDetails.getImageUrl()!=null) {
+			ad.setImageUrl(adDetails.getImageUrl());
+		}
 	}
 	
 	@DeleteMapping("/ad/{id}")
 	public Map<String, Boolean> deleteAd(@PathVariable(value = "id") Long adId)
 			throws ResourceNotFoundException {
+		System.out.println("deleteAd");
 		Ad ad = agent.findById(adId)
 				.orElseThrow(() -> new ResourceNotFoundException("Ad not found for this id :: " + adId));
 		agent.delete(ad);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
+	
+	@DeleteMapping("/ad/validate/{id}")
+	public Map<String, Boolean> validateAd(@PathVariable(value = "id") Long adId)
+			throws ResourceNotFoundException {
+		System.out.println("deleteAd");
+		Ad ad = agent.findById(adId)
+				.orElseThrow(() -> new ResourceNotFoundException("Ad not found for this id :: " + adId));
+		ad.setIsValid(true);
+		agent.save(ad);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("validated", Boolean.TRUE);
 		return response;
 	}
 }
