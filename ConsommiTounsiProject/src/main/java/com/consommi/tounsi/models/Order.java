@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,6 +23,31 @@ public class Order {
 	private boolean IsPaid;
 	private int ItemNumber;
 	private float Total;
+	
+	private String DeliveryMethod;
+	@OneToOne
+	@JoinColumn(name = "delivery_id")
+	private Delivery Delivery;
+	
+	@ManyToOne
+	private Customer Customer;
+	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
+	private List<Order_State> States;
+	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
+	private List<Order_Detail> Details;
+	
+	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
+	private List<Complaint> Complaints;
+	
+	
+	
+	
+	
+	
+	public Order() {
+		super();
+	}
+	
 	public String getDeliveryMethod() {
 		return DeliveryMethod;
 	}
@@ -34,12 +60,8 @@ public class Order {
 	public void setDelivery(Delivery delivery) {
 		Delivery = delivery;
 	}
-	private String DeliveryMethod;
-	@OneToOne
-	private Delivery Delivery;
-	public Order() {
-		super();
-	}
+	
+	
 	public long getOrderId() {
 		return OrderId;
 	}
@@ -76,17 +98,20 @@ public class Order {
 	public void setStates(List<Order_State> states) {
 		this.States = states;
 	}
-	@ManyToOne
-	private Customer Customer;
-	@OneToMany(mappedBy = "Order")
-	private List<Order_State> States;
-	@OneToMany(mappedBy = "Order",cascade = CascadeType.ALL)
-	private List<Order_Detail> Details;
+
 	public List<Order_Detail> getDetails() {
 		return Details;
 	}
 	public void setDetails(List<Order_Detail> details) {
 		Details = details;
 	}
+	public List<Complaint> getComplaints() {
+		return Complaints;
+	}
+	public void setComplaints(List<Complaint> complaints) {
+		Complaints = complaints;
+	}
+	
+	
 	
 }
