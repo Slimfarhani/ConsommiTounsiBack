@@ -26,7 +26,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 	@Query("select e from Event e where e.state = :state ")
 	List<Event> findByState(@Param("state")int state);
 	
-	@Query("select e from Event e where e.StartDate > CURRENT_TIMESTAMP ")
+	@Query("select e from Event e where e.StartDate > CURRENT_TIMESTAMP and e.state=1 ")
 	List<Event> UpcomingEvents();
 
 	@Query(value = "select SUM(donation_amount) from participation where event_id = ?1 ", nativeQuery = true)
