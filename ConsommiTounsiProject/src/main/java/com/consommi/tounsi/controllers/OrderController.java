@@ -54,6 +54,7 @@ public class OrderController {
 	public List<Order> getAllOrders() {
 		return agent.findAll();
 	}
+	
 	@GetMapping("/orderbycustomer/{idcustomer}")
 	public Optional<List<Order>> getOrdersByCustomer(@PathVariable(value = "idcustomer") Long customerId) {
 		return agent.findOrdersByCustomer(customerId);

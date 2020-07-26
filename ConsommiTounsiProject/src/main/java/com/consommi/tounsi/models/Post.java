@@ -22,6 +22,13 @@ public class Post {
 	private String Content;
 	private int RatingTotal;
 	private int RatingNumber;
+	private String UrlImage;
+	public String getUrlImage() {
+		return UrlImage;
+	}
+	public void setUrlImage(String urlImage) {
+		UrlImage = urlImage;
+	}
 	@ManyToOne
 	private User User;
 	@OneToMany(mappedBy = "Post")
