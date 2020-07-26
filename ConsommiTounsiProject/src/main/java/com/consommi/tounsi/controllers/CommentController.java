@@ -48,15 +48,24 @@ public class CommentController {
 				.orElseThrow(() -> new ResourceNotFoundException("Comment not found for this id :: " + commentId));
 		return ResponseEntity.ok().body(comment);
 	}
-	@PostMapping("/comment/{postid}/{userid}")
-	public Comment createComment(@Valid @RequestBody Comment comment,@PathVariable(value = "userid")
-	Long userId, @PathVariable(value = "postid") Long postId) 
+	
+	@GetMapping("/comments/{postId}")
+	public List<Comment> getCommentsByPostId(@PathVariable(value = "postId") Long postId)
 			throws ResourceNotFoundException {
+		return agent.findByPostId(postId);
+	}
+	
+	@PostMapping("/comment/{postid}/{userid}/{content}")
+	public Comment createComment(@Valid @RequestBody Comment comment,@PathVariable(value = "userid")
+	Long userId, @PathVariable(value = "postid") Long postId, @PathVariable(value = "content") String content) 
+			throws ResourceNotFoundException {
+		Comment c = new Comment();
+		c.setContent(content);
 		User user = agentUser.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Comment not found for this id :: " + userId));
 		Post post = agentPost.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post not found for this id :: " + userId));
-		comment.setUser(user);
-		comment.setPost(post);
-		return agent.save(comment);
+		c.setUser(user);
+		c.setPost(post);
+		return agent.save(c);
 	}
 	
 	@PutMapping("/Comment/{id}")

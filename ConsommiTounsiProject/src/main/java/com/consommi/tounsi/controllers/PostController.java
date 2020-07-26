@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.consommi.tounsi.exceptions.ResourceNotFoundException;
+import com.consommi.tounsi.models.Event;
 import com.consommi.tounsi.models.Post;
+import com.consommi.tounsi.models.Stock;
 import com.consommi.tounsi.models.User;
 import com.consommi.tounsi.repository.PostRepository;
 import com.consommi.tounsi.repository.UserRepository;
@@ -36,7 +38,7 @@ public class PostController {
 	public List<Post> getAllPosts() {
 		return agent.findAll();
 	}
-	@GetMapping("/post/{id}")
+	@GetMapping("/postById/{id}")
 	public ResponseEntity<Post> getPostById(@PathVariable(value = "id") Long postId)
 			throws ResourceNotFoundException {
 		Post post = agent.findById(postId)
@@ -74,5 +76,12 @@ public class PostController {
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
+	}
+	@GetMapping("/postByUserName/{nomUser}")
+	public ResponseEntity<List<Post>> getStockByNomProd(@PathVariable(value = "nomUser") String nomUser)
+			throws ResourceNotFoundException {
+		List<Post> post = agent.findByuserName(nomUser)
+				.orElse(null);
+		return ResponseEntity.ok().body(post);
 	}
 }
