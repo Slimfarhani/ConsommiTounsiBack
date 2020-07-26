@@ -95,7 +95,7 @@ public class Event {
 	public void setEndDate(Date endDate) {
 		EndDate = endDate;
 	}
-	@JsonIgnore
+	
 	public Supplier getSupplier() {
 		return Supplier;
 	}

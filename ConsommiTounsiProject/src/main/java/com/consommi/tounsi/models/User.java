@@ -1,5 +1,7 @@
 package com.consommi.tounsi.models;
 
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.DiscriminatorColumn;
@@ -33,6 +35,7 @@ public class User {
 	private long UserId;
 	private String UserName;
 	private String Password;
+	private Date Blocked ;
 	@Transient
 	private String role;
 	public String getRole() {
@@ -77,4 +80,11 @@ public class User {
 	public void setComment_Reacts(List<Comment_React> comment_Reacts) {
 		Comment_Reacts = comment_Reacts;
 	}
+	public Date getBlocked() {
+		return Blocked;
+	}
+	public void setBlocked(Date blocked) {
+		Blocked = blocked;
+	}
+	
 }

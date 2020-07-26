@@ -1,5 +1,6 @@
 package com.consommi.tounsi.repository;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,5 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@Query("select count(u)>0 from User u where u.UserName = :UserName")
     Boolean verifUsername(@Param("UserName")String UserName);
+	
 }
 

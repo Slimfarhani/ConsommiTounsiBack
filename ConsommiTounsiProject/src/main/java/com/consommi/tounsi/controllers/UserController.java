@@ -1,7 +1,9 @@
 package com.consommi.tounsi.controllers;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.consommi.tounsi.exceptions.ResourceNotFoundException;
 import com.consommi.tounsi.models.Admin;
 import com.consommi.tounsi.models.Customer;
+import com.consommi.tounsi.models.DateInput;
 import com.consommi.tounsi.models.User;
 import com.consommi.tounsi.repository.AdminRepository;
 import com.consommi.tounsi.repository.CustomerRepository;
 import com.consommi.tounsi.repository.SupplierRepository;
 import com.consommi.tounsi.repository.UserRepository;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -133,8 +137,12 @@ System.out.println(agent.verifUsername(userName));
 			user.setPassword(userDetails.getPassword());
 		}
 		
+			user.setBlocked(userDetails.getBlocked());
+		
+		
 		
 	}
+	
 	@PutMapping("admin/update/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId,
 			@Valid @RequestBody User userDetails) throws ResourceNotFoundException {
@@ -145,5 +153,18 @@ System.out.println(agent.verifUsername(userName));
 		updateduser.setRole("Admin");
 		return ResponseEntity.ok(updateduser);
 	}
+	@GetMapping("/blocked/{id}")
+	public ResponseEntity<Boolean> IsBlocked(@PathVariable(value = "id") Long userId)
+			throws ResourceNotFoundException {
+		User user = agent.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+		Date date = new Date();  
+		if(user.getBlocked()==null)
+		return ResponseEntity.ok(Boolean.FALSE);
+		else if(user.getBlocked().compareTo(date)<0 ) return  ResponseEntity.ok(Boolean.FALSE);
+		else return ResponseEntity.ok(Boolean.TRUE) ;
+	}
+	
+	
 	
 }
