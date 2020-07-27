@@ -19,7 +19,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 	
 	
 	@Query("select e from Event e where e.Supplier.UserId = :SupplierID ")
-	List<Event> findBySupplier(@Param("SupplierID")Long SupplierID);
+	List<Event> findBySupplier(@Param("SupplierID")long SupplierID);
 	
 	
 

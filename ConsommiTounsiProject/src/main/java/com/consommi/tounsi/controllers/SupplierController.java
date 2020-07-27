@@ -103,7 +103,7 @@ public class SupplierController {
 		return ResponseEntity.ok(updatedsupplier);
 	}
 	@DeleteMapping("/delete/{id}")
-	public Map<String, Boolean> deletePost(@PathVariable(value = "id") Long supplierId)
+	public Map<String, Boolean> deletePost(@PathVariable(value = "id") long supplierId)
 			throws ResourceNotFoundException {
 		Supplier supplier = agent.findById(supplierId)
 				.orElseThrow(() -> new ResourceNotFoundException("Supplier not found for this id :: " + supplierId));

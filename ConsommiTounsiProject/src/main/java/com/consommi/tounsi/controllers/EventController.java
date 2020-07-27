@@ -77,7 +77,7 @@ public class EventController {
 	}
 	
 	@GetMapping("/BySupplier/{SupplierID}")
-	public List<Event> getEventBySupplier(@PathVariable(value = "SupplierID") Long SupplierID)
+	public List<Event> getEventBySupplier(@PathVariable(value = "SupplierID") long SupplierID)
 	{	
 		return agent.findBySupplier(SupplierID);
 				

@@ -57,7 +57,7 @@ public class StockController {
 	@GetMapping("/stockbysupplier/{userid}")
 	public ResponseEntity<List<Stock>> getStockBySupplierId(@PathVariable(value = "userid") Long supplierId)
 			throws ResourceNotFoundException {
-		List<Stock> stocks = agent.findBySuppliedId(""+supplierId).orElse(null);
+		List<Stock> stocks = agent.findBySuppliedId(supplierId).orElse(null);
 		return ResponseEntity.ok().body(stocks);
 	}
 	
@@ -147,7 +147,7 @@ public class StockController {
 	}
 	
 	@GetMapping("/stockBySupplier/{supplierid}")
-	public ResponseEntity <List<Stock>> getStockBySupplier(@PathVariable(value = "supplierid") String supplierid)
+	public ResponseEntity <List<Stock>> getStockBySupplier(@PathVariable(value = "supplierid") long supplierid)
 			throws ResourceNotFoundException {
 		List<Stock>  stocks = agent.findBySuppliedId(supplierid)
 				.orElse(null);
